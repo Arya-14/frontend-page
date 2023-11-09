@@ -17,7 +17,7 @@ const Signup =() => {
     }
     const handleSubmit= (e) =>{
         e.preventDefault();
-        axios.post('http://localhost:8081/students/signup', data)
+        axios.post('http://localhost:8081/users/signup', data)
         .then(result=> {console.log(result)
             navigate('/login')
         })

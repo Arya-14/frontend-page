@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Dropdown, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import './styles.css'
 
 const Main = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -21,7 +22,7 @@ const Main = () => {
         </Nav>
       </div>
 
-      <div className="main-content">
+      <div className="Navbar">
       <Nav>
          {/* Other Nav items go here */}
         <Dropdown>

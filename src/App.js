@@ -7,6 +7,10 @@ import Main from "./components/Main";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import ChangePassword from "./components/Password";
+import Logout from "./components/Logout";
+import StudentsPage from "./components/StudentPage";
+import AddStudent from "./components/AddStudent";
+import EditStudent from "./components/EditStudentDetail";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 function App() {
@@ -17,6 +21,10 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/main" element={<Main/>}/>
         <Route path="/change-password" element={<ChangePassword/>}/>
+        <Route path="/logout" element={<Logout/>}/>
+        <Route path="/main/students" element={<StudentsPage/>}/>
+        <Route path="/add-student" element={<AddStudent/>}/>
+        <Route path="/edit-student/${student.id}" element={<EditStudent/>} />
         {/* <Route path="/main" render={() => {
         if (token) {
           return <Main />;

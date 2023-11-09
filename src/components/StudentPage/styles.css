@@ -1,0 +1,71 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  th {
+    text-align: left;
+  }
+  th:first-child {
+    width: 150px;
+    text-align: left;
+  }
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+  }
+  td:last-child {
+    text-align: center;
+  }
+  
+  button a {
+    color: white;
+    text-decoration: none;
+  }
+  .search-bar {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .search-bar input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .search_btn {
+    width: 311px;
+    height: 47px;
+    top: 30px;
+    left: 250px;
+    border-radius: 22px;
+    border: 0.5px solid #0000004D;
+
+  }
+  .edit {
+    width: 203px;
+    height: 47px;
+    top: 30px;
+    right: 250px;
+    padding: 14px, 8px, 11px, 11px;
+    border-radius: 22px;
+    gap: 24px;
+    background: #90A1FD30;
+    box-shadow: 0px 20px 50px 0px #3745571A;
+  }
+  
+  .add_new {
+    width: 145px;
+    height: 47px;
+    top: 30px;
+    right: 450px;
+    border-radius: 22px;
+  }

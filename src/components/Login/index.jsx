@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, Navigate} from 'react-router-dom';
 import axios from 'axios';
@@ -11,14 +11,10 @@ const Login =() => {
         password: ''
     })
     const[error, setError]= useState();
-    const handleChange= e => {
-        const{name, value}= e.target;
-        setData({...data,[name]: value});
-    }
-    const handleSubmit= async(e) =>{
-        e.preventDefault();
+    
+    useEffect(()=> {
         axios.interceptors.request.use((config) => {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('TOKEN');
         
             if (token) {
               config.headers.Authorization = `Bearer ${token}`;
@@ -26,11 +22,40 @@ const Login =() => {
         
             return config;
         });
-        axios.post('http://localhost:8081/students/login', data) 
+        axios.post('http://localhost:8081/users/checklogin')
         .then((response) => {
-            cookies.set("TOKEN", response.data.token, {
-                path: "/login",
-            });
+            if(response.status === 401|| response.status === 408){
+                localStorage.removeItem("TOKEN");
+            }else if(response.status === 200){
+                window.location.href = "/main";
+            }
+        })
+        .catch((err)=> {
+            console.log(err);
+            if(err && err.response && (err.response.status === 401|| err.response.status === 408)){
+                localStorage.removeItem("TOKEN");
+            }
+        })
+    },[])
+
+    const handleChange= e => {
+        const{name, value}= e.target;
+        setData({...data,[name]: value});
+    }
+    const handleSubmit= async(e) =>{
+        e.preventDefault();
+        axios.interceptors.request.use((config) => {
+            const token = localStorage.getItem('TOKEN');
+        
+            if (token) {
+              config.headers.Authorization = `Bearer ${token}`;
+            }
+        
+            return config;
+        });
+        axios.post('http://localhost:8081/users/login', data) 
+        .then((response) => {
+            localStorage.setItem("TOKEN", response.data.token);
             // Navigate('/main');
             window.location.href = "/main";
                 // localStorage.setItem('token', response.data.token);
