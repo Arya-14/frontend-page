@@ -1,98 +1,85 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Image2 from '../../Assets/Images/image 2.jpg';
+import Logo from '../../Assets/Images/Logo.jpg';
 import styles from './styles.css';
 
-const Signup =() => {
-    const [data, setData]= useState({
+const Signup = () => {
+    const [data, setData] = useState({
         name: '',
-        email:'',
+        email: '',
         password: ''
     })
-    const[error, setError]= useState();
-    const navigate= useNavigate();
-    const handleChange= e => {
-        const {name, value} =e.target;
-        setData({...data,[name]: value});
+    const [error, setError] = useState();
+    const navigate = useNavigate();
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setData({ ...data, [name]: value });
     }
-    const handleSubmit= (e) =>{
+    const handleSubmit = (e) => {
         e.preventDefault();
         axios.post('http://localhost:8081/users/signup', data)
-        .then(result=> {console.log(result)
-            navigate('/login')
-        })
-        .catch(err => console.log(err));
-    //     const { name, email, password } = data;
-    // try {
-    // const response = await axios.post('http://localhost:8080/students/signup', {
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     name,
-    //     email,
-    //     password,
-    //   }),
-    // });
-    // if (response.status === 201) {
-    //   // The sign up was successful Store the JWT token in the local storage
-    //   localStorage.setItem('token', response.headers.get('Authorization'));
-    //   // Redirect the user to the main page
-    //   navigate('/');
-    // } else {
-    //   // The sign up was unsuccessfu Throw an error
-    //   throw new Error('An error occurred while signing up.');
-    // }
-    // } catch (error) {
-    //         if(error.response && error.response.status>=400 && error.response.status<=500){
-    //             setError(error.response.data.message);
-    //         }
-            
-    //     }
+            .then(result => {
+                console.log(result)
+                navigate('/login')
+            })
+            .catch(err => console.log(err));
+
     }
     return (
-        <div className={styles.signUp_container}>
-            <div className={styles.signup_form_container}>
-                {console.log (data)}
-                <div className={styles.right}>
-                    <form className={styles.form_container} onSubmit={handleSubmit}>
-                    <div className={styles.up}>
-                        <h1>Create Account</h1>
-                        <input
-                            type='text'
-                            placeholder='Name'
-                            name='name'
-                            onChange={handleChange}
-                            value={data.name}
-                            required
-                            className='styles.input'
-                        />
-                        <input
-                            type='email'
-                            placeholder='Email'
-                            name='email'
-                            onChange={handleChange}
-                            value={data.email}
-                            required
-                            className='styles.input'
-                        />
-                        <input
-                            type='password'
-                            placeholder='Password'
-                            name='password'
-                            onChange={handleChange}
-                            value={data.password}
-                            required
-                            className='styles.input'
-                        />
-                    </div>
-                        {error && <div className={styles.error_msg}>{error}</div>}
-                        <button type='submit' className={styles.blue_btn}>
-                            Create
-                        </button>
+        <div className="signUp_container">
+            <div className="logo">eSchool</div>
+            <div className="content"><div className="log"><img src={Logo} /></div><h5 className='school'>School Management Tool</h5>
+
+                <h3 className='learning'>For Improved Learning and<br></br> Teaching experience !</h3>
+                <h6 className='learn'>Learn More</h6></div>
+            <div className="im"><img src={Image2} /></div>
+
+
+
+            <div className="signup_form_containers">
+                {console.log(data)}
+                <div className="right">
+                    <form className="form_container" onSubmit={handleSubmit}>
+                        <div className="ups">
+                            <h1 className='account'>Create Account</h1>
+                            <input
+                                type='text'
+                                placeholder='Name'
+                                name='name'
+                                onChange={handleChange}
+                                value={data.name}
+                                required
+                                className="input1"
+                            />
+                            <input
+                                type='email'
+                                placeholder='Email'
+                                name='email'
+                                onChange={handleChange}
+                                value={data.email}
+                                required
+                                className="input1"
+                            />
+                            <input
+                                type='password'
+                                placeholder='Password'
+                                name='password'
+                                onChange={handleChange}
+                                value={data.password}
+                                required
+                                className="input1"
+                            />
+                            {error && <div className="error_msg">{error}</div>}
+                            <button type='submit' className="blue_btn">
+                                Create
+                            </button>
+                        </div>
+
                     </form>
-                    <p> Already Have An Account? <Link to={"/login"}>
-                        <button type='button' className={styles.white_btn}>
+                    <p className='loginAcc'> Already Have An Account? <Link to={"/login"}>
+                        <button type='button' className="white_btn">
                             log in
                         </button>
                     </Link> </p>

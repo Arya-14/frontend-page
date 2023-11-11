@@ -1,8 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./styles.css";
 
-const EditStudent = ({  }) => {
+const EditStudent = ({match}) => {
   const [student, setStudent] = useState({});
+
+  // useEffect(() =>{
+  //   axios.get(`/students/${match.params.id}`)
+  //     .then(response => {
+  //       setStudent(response.data);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     })
+  // }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -17,16 +28,6 @@ const EditStudent = ({  }) => {
     //   alert('There was an error updating the student. Please try again later.');
     // }
   };
-
-  useEffect(() =>{})
-//     axios.get(`/students/${match.params.id}`)
-//       .then(response => {
-//         setStudent(response.data);
-//       })
-//       .catch(err => {
-//         console.log(err);
-//       })
-//   }, [match.params.id]);
 
   return (
     <div className="edit-student-form">

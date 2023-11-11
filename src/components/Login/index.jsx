@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link, Navigate} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import axios from 'axios';
+import Image2 from '../../Assets/Images/image 2.jpg';
+import Logo from '../../Assets/Images/Logo.jpg';
+import './styles.css'
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
@@ -56,57 +59,95 @@ const Login =() => {
         axios.post('http://localhost:8081/users/login', data) 
         .then((response) => {
             localStorage.setItem("TOKEN", response.data.token);
-            // Navigate('/main');
-            window.location.href = "/main";
-                // localStorage.setItem('token', response.data.token);
-                // navigate('/')
+            window.location.href = "/main/students";
         })
         .catch (err => console.log(err));
-        // axios.post('http://localhost:8081/students/login', data)
-        // .then(result=> {console.log(result)
-        //     navigate('/')
-        // })
-        // .catch(error){
-
-        // };
     }
         return (
-            <div className="container">
-                <div className='row'>
-                    <div className='col-md-6'>
-                        <h1>Login</h1>
-                        <form className="form-group" onSubmit={handleSubmit}>
+            <div className="signUp_container">
+            <div className="logo">eSchool</div>
+            <div className="content"><div className="log"><img src={Logo} /></div><h5 className='school'>School Management Tool</h5>
+
+                <h3 className='learning'>For Improved Learning and<br></br> Teaching experience !</h3>
+                <h6 className='learn'>Learn More</h6></div>
+            <div className="im"><img src={Image2} /></div>
+
+
+
+            <div className="signup_form_container">
+                <div className="right">
+                    <form className="form_container" onSubmit={handleSubmit}>
+                        <div className="up">
+                            <h1 className='welcome'>Welcome Back!</h1>
                             <input
-                                type="email"
-                                placeholder="Email"
-                                name="email"
+                                type='email'
+                                placeholder='Email'
+                                name='email'
                                 onChange={handleChange}
                                 value={data.email}
                                 required
-                                className="form-control"
+                                className="input1"
                             />
                             <input
-                                type="password"
-                                placeholder="Password"
-                                name="password"
+                                type='password'
+                                placeholder='Password'
+                                name='password'
                                 onChange={handleChange}
                                 value={data.password}
                                 required
-                                className="form-control"
+                                className="input1"
                             />
-                            <button type="submit" className="btn btn-success">
-                                 Login
+                            {error && <div className="error_msg">{error}</div>}
+                            <button type='submit' className="blue_btn">
+                                Login
                             </button>
-                        </form>
-                    </div>
-                    <div className='col-md-6'>
-                    {error && <p className="text-danger">{error}</p>}
-                        <Link to={"/"}>
-                            <p> Create An Account?</p>
-                        </Link>
-                    </div>
+                        </div>
+
+                    </form>
+                    <p className='createAcc'><Link to={"/"}>
+                        <button type='button' className="white_btn">
+                            Create An Account?
+                        </button>
+                    </Link> </p>
                 </div>
             </div>
+        </div>
+            // <div className="container">
+            //     <div className='row'>
+            //         <div className='col-md-6'>
+            //             <h1>Login</h1>
+            //             <form className="form-group" onSubmit={handleSubmit}>
+            //                 <input
+            //                     type="email"
+            //                     placeholder="Email"
+            //                     name="email"
+            //                     onChange={handleChange}
+            //                     value={data.email}
+            //                     required
+            //                     className="form-control"
+            //                 />
+            //                 <input
+            //                     type="password"
+            //                     placeholder="Password"
+            //                     name="password"
+            //                     onChange={handleChange}
+            //                     value={data.password}
+            //                     required
+            //                     className="form-control"
+            //                 />
+            //                 <button type="submit" className="btn btn-success">
+            //                      Login
+            //                 </button>
+            //             </form>
+            //         </div>
+            //         <div className='col-md-6'>
+            //         {error && <p className="text-danger">{error}</p>}
+            //             <Link to={"/"}>
+            //                 <p> Create An Account?</p>
+            //             </Link>
+            //         </div>
+            //     </div>
+            // </div>
         );
 };
 

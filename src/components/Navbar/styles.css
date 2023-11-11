@@ -1,0 +1,16 @@
+.upNavbar{
+    margin-left: 270px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%-270px;
+    margin-bottom: 20px;
+}
+.nav-dropdown{
+    padding: 20px;
+}
+.path{
+    text-transform: capitalize;
+    padding: 30px;
+    font-size: 2rem;
+    font-weight: 600;
+}

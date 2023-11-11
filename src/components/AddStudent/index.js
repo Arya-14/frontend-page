@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./styles.css"
 
 const AddStudent = () => {
   const [Firstname, setFirstName] = useState("");
@@ -28,6 +29,7 @@ const AddStudent = () => {
       <h1>Add New Student</h1>
 
       <form onSubmit={handleSubmit}>
+      <div className="flex-row">
         <input type="text"
                name="First Name"
                placeholder="First Name"
@@ -38,6 +40,8 @@ const AddStudent = () => {
                placeholder="Last Name"
                value={Lastname}
                onChange={(event) => setLastName(event.target.value)} />
+      </div>
+      <div className="flex-row">
         <input type="number"
                name="ID"
                placeholder="ID"
@@ -47,8 +51,10 @@ const AddStudent = () => {
                name="Date Of Birth"
                placeholder="Date Of Birth"
                value={DOB}
-               onChange={(event) => setDOB(event.target.value)} />               
-        <input type="text"
+               onChange={(event) => setDOB(event.target.value)} /> 
+      </div>
+      <div className="flex-row">             
+        <input className="section" type="text"
                name="Class"
                placeholder="Class"
                value={Class}
@@ -58,12 +64,14 @@ const AddStudent = () => {
                placeholder="Parent's Name"
                value={ParentsName}
                onChange={(event) => setParentsName(event.target.value)} />
+      </div>
+      <div className="flex-row2">
         <input type="text"
                name="Address"
                placeholder="Address"
                value={Address}
                onChange={(event) => setAddress(event.target.value)}/>
-
+      </div>
         <button type="submit">Add Student</button>
       </form>
     </div>

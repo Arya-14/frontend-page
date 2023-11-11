@@ -91,16 +91,18 @@
     left: 30%;
 }
 
-.signup_form_containers {
+.signup_form_container {
     position: absolute;
     top: 10%;
     right: 10%;
+    padding-right: 50px;
+    padding-top: 30px;
 }
 
-.ups {
+.up {
     background-color: #DEEEF6AB;
     width: 01px;
-    height: 486px;
+    height: 386px;
     left: 868px;
     top: 337px;
     border-radius: 25px;
@@ -108,7 +110,7 @@
 
 }
 
-.account {
+.welcome {
     font-family: Urbanist;
     font-size: 28px;
     font-weight: 600;
@@ -169,7 +171,7 @@
     margin-left: 30px;
 }
 
-.loginAcc {
+.createAcc {
     margin-left: 20px;
     margin-top: 5px;
 }

@@ -1,0 +1,52 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Vampiro+One&display=swap');
+
+.sidebar {
+    width: 270px;
+}
+
+.sidebar-header {
+    width: 205px;
+    height: 64px;
+    top: 23px;
+    left: 43px;
+    font-family: Vampiro One;
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 64px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #434141;
+    background-color: white;
+}
+
+.sidebar-left {
+    display: flex;
+    gap: 50px;
+    flex-direction: column;
+    padding: 70px 20px;
+}
+.sidebtn {
+    text-decoration: none;
+    padding: 10px;
+    padding-bottom: 70px;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 30px;
+}
+
+.sidebar-title {
+    font-family: Vampiro One;
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 64px;
+    letter-spacing: 0em;
+    text-align: center;
+    padding:23px 43px ;
+
+}
+.studentimg{
+    height:40px;
+    width: 40px;
+}
