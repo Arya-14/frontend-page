@@ -5,6 +5,7 @@ import './styles.css';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
+import editIcon from '../../Assets/Images/editicon.png'
 
 const SettingsPage = () => {
   const [customField, setCustomField] = useState([]);
@@ -14,7 +15,14 @@ const SettingsPage = () => {
       .then(response => {
         console.log(response);
         setCustomField(response.data);
-      });
+      })
+      .catch((err)=> {
+        console.log(err);
+        if(err && err.response && (err.response.status === 401|| err.response.status === 408)){
+            localStorage.removeItem("TOKEN");
+            window.location.href="/login";
+        }
+    });
   }, []);
 
   const [filters, setFilters] = useState({
@@ -27,7 +35,7 @@ const SettingsPage = () => {
     console.log(rowData,"rowData");
     return (
         <div>
-            <Link to={`/main/edit-student-customFields`}>Edit</Link>
+            <Link to={`/main/edit-student-customFields`} state={{ from: rowData}} ><img className='editimg' src={editIcon}/></Link>
         </div>
     );
 };
@@ -38,7 +46,6 @@ const renderHeader = () => {
                 <h3> Student's Custom Fields</h3>
             </span>
             <button className="btn btn-primary">
-                <i className="pi pi-plus" />
                 <Link to="/main/add-student-customFields"> + Add New</Link>
             </button>
         </div>

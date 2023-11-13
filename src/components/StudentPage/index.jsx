@@ -7,6 +7,8 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
 import { InputText } from 'primereact/inputtext';
+import editIcon from "../../Assets/Images/editicon.png";
+import searchIcon from '../../Assets/Images/searchicon.jpg';
 
 const StudentsPage = () => {
   const [students, setStudents] = useState([]);
@@ -17,10 +19,17 @@ const StudentsPage = () => {
         console.log(response);
         setStudents(response.data);
         setLoading(false);
-      });
+      })
+      .catch((err)=> {
+        console.log(err);
+        if(err && err.response && (err.response.status === 401|| err.response.status === 408)){
+            localStorage.removeItem("TOKEN");
+            window.location.href="/login";
+        }
+    });
   }, []);
 
-  const [filters, setFilters] = useState({
+ const [filters, setFilters] = useState({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
     name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
     });
@@ -30,7 +39,7 @@ const StudentsPage = () => {
     console.log(rowData,"rowData");
     return (
         <div>
-            <Link to={`/edit-student/${rowData.id}`}>Edit</Link>
+            <Link to={'/main/Edit-studentDetails'} state={{ from: rowData}} >  <img className='editimg' src={editIcon}/></Link>
         </div>
     );
 };
@@ -45,18 +54,13 @@ const onGlobalFilterChange = (e) => {
 };
 const renderHeader = () => {
     return (
-        <div className="flex-content">
+        <div className="studentfield">
             <span className="p-input-icon-left">
-                <i className="pi pi-search"></i>
+                <img className="searchimg" src={searchIcon}/>
                 <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Keyword Search" />
             </span>
-            <button className="btn-primary">
-                <i className="pi pi-plus" />
+            <button className="btn btn-primary">
                 <Link to={'/main/add-student'}> + Add New</Link>
-            </button>
-            <button className="btn-secondary">
-                 <i className="pi pi-pencil" />
-                 <Link to={'/main/Edit-studentDetails'}> Edit Student Details </Link>
             </button>
         </div>
     );
@@ -79,47 +83,6 @@ const header = renderHeader();
 </DataTable>
     </div>
     
-    // <div className="students-page">
-    //   <div className="student-content">
-    //     <input class='search_btn' type="text" placeholder="Search students..." />
-    //     <button class='edit'><Link to={'/edit-student/${student.id}'}> Edit Student Details </Link></button>
-    //     <button class='add_new'><Link to="/add-student">+ Add New</Link></button>
-    //     </div>
-
-    //     <table>
-    //       <thead>
-    //         <tr>
-    //           <th>ID</th>
-    //           <th>First Name</th>
-    //           <th>Last Name</th>
-    //           <th>Email</th>
-    //           <th>Date of Birth</th>
-    //           <th>Class</th>
-    //           <th>Parent's Name</th>
-    //           <th>Address</th>
-    //           <th>Actions</th>
-    //         </tr>
-
-    //     </thead>
-    //     <tbody>
-    //         {students.map(student => (
-    //           <tr key={student.Id}>
-    //             <td>{student.Id}</td>
-    //             <td>{student.Firstname}</td>
-    //             <td>{student.Lastname}</td>
-    //             <td>{student.Email}</td>
-    //             <td>{student.DOB}</td>
-    //             <td>{student.Class}</td>
-    //             <td>{student.ParentsName}</td>
-    //             <td>{student.Address}</td>
-    //             <td>
-    //               <Link to={`/edit-student/${student.id}`}>Edit</Link>
-    //             </td>
-    //           </tr>
-    //         ))}
-    //       </tbody>
-    //     </table>
-    // </div>
   );
 };
 

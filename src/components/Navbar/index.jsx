@@ -4,17 +4,19 @@ import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import "./styles.css";
 function Navbar() {
+    const name = localStorage.getItem("NAME");
     const location = useLocation();
     const { pathname } = location;
     const segments = pathname.split('/');
     const resource = segments[segments.length - 1];
     return (
         <div className="upNavbar">
-            <p className="path"> {resource} </p>
+            <a className="path" href="/main/students"> {resource} </a>
             <div className="nav-dropdown">
 
                 <Dropdown>
                     <Dropdown.Toggle variant="secondary" id="dropdownMenuButton">
+                        <a className="admin-name" href="/main/students">{name}</a>
                         <i className="bi bi-three-dots-vertical"></i>
                     </Dropdown.Toggle>
 

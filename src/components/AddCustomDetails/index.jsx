@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import backIcon from '../../Assets/Images/backicon.png';
+
 import "./styles.css"
 
 const AddStudentCustomField = () => {
@@ -23,7 +25,11 @@ const AddStudentCustomField = () => {
 
   return (
     <div className="add-student-form">
+    <div className="addcustom">
+          <a href="/main/settings"> <img className="backimg" src={backIcon} /></a>
+
       <h1>Add New Student'S Custom Field</h1>
+      </div>
 
       <form onSubmit={handleSubmit}>
       <div className="addcustomdetails">

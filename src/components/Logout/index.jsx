@@ -1,12 +1,11 @@
 import React from 'react';
 import { useEffect } from 'react';
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
 
 const Logout = () => {
   useEffect(() => {
-    // Remove the token from the cookie
-    cookies.remove("TOKEN");
+    // Remove the token from the localstorage
+    localStorage.removeItem("TOKEN");
+    localStorage.removeItem("NAME");
     alert("Are you sure you want to log out?");
     // Redirect to the login page
     window.location.href ="/login";

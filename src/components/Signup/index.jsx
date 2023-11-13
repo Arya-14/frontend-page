@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Image2 from '../../Assets/Images/image 2.jpg';
@@ -17,6 +17,23 @@ const Signup = () => {
         const { name, value } = e.target;
         setData({ ...data, [name]: value });
     }
+    useEffect(()=> {
+        axios.post('http://localhost:8081/users/checklogin')
+        .then((response) => {
+            if(response.status === 401|| response.status === 408){
+                localStorage.removeItem("TOKEN");
+            }else if(response.status === 200){
+                window.location.href = "/main/students";
+            }
+        })
+        .catch((err)=> {
+            console.log(err);
+            if(err && err.response && (err.response.status === 401|| err.response.status === 408)){
+                localStorage.removeItem("TOKEN");
+            }
+        })
+    },[])
+
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post('http://localhost:8081/users/signup', data)

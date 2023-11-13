@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
+import backIcon from '../../Assets/Images/backicon.png';
 import './styles.css';
 
 const ChangePassword = () => {
@@ -32,8 +33,6 @@ const ChangePassword = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // const decodedToken = jwt.decode(localStorage.getItem("token"));
-    // const id = decodedToken.id; // Get the user's ID from the cookie
 
     const passwordValidationErrors = Array.isArray(validatePasswords(newPassword, confirmPassword)) ? validatePasswords(newPassword, confirmPassword) : []; // Validate the passwords
 
@@ -60,7 +59,6 @@ const ChangePassword = () => {
         console.log(response);
         const user = JSON.parse(JSON.stringify(response.data));
         user.password = newPassword;
-        // user.save();
 
         // Navigate to the main page
         window.location.href = "/main/students";
@@ -70,75 +68,44 @@ const ChangePassword = () => {
 
   return (
     <div className="container1">
-      <h1>Manage Your Security Settings</h1>
-      <a href="/main">Back</a>
-      <h3>Change Your Password</h3>
+      <h3>Manage Your Security Settings</h3>
+      <div className="backnav">
+        <a href="/main/students"> <img className="backimg" src={backIcon} /></a>
+        <h3 className="password">Change Your Password</h3>
+      </div>
       <Form onSubmit={handleSubmit}>
-        <Form.Group>
-
-
-          <Form.Label>Old Password</Form.Label>
-
-
-          <Form.Control
-
-            type="password"
-
-            value={oldPassword}
-
-            onChange={(event) => setOldPassword(event.target.value)} />
-        </Form.Group>
-
-
-
-        <Form.Group>
-
-
-          <Form.Label>New Password</Form.Label>
-
-
-          <Form.Control
-
-            type="password"
-
-            value={newPassword}
-
-            onChange={(event) => setNewPassword(event.target.value)} />
-        </Form.Group>
-
-        <Form.Group>
-
-
-          <Form.Label>Confirm Password</Form.Label>
-
-
-          <Form.Control
-
-            type="password"
-
-            value={confirmPassword}
-
-            onChange={(event) => setConfirmPassword(event.target.value)} />
-        </Form.Group>
-
-
-
+        <div className="changepassword">
+          <Form.Group>
+            <Form.Label>Old Password</Form.Label>
+            <Form.Control
+              type="password"
+              value={oldPassword}
+              onChange={(event) => setOldPassword(event.target.value)} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>New Password</Form.Label>
+            <Form.Control
+              type="password"
+              value={newPassword}
+              onChange={(event) => setNewPassword(event.target.value)} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Confirm Password</Form.Label>
+            <Form.Control
+              type="password"
+              value={confirmPassword}
+              onChange={(event) => setConfirmPassword(event.target.value)} />
+          </Form.Group>
+        </div>
         <Form.Group>
           <ul className="password-instructions">
             <li>Must be at least 8 characters long</li>
-
-
             <li>Must contain at least one uppercase letter</li>
-
-
             <li>Must contain at least one lowercase letter</li>
-
-
             <li>Must contain at least one digit</li>
             <li>Must contain at least one special character</li>
           </ul>
         </Form.Group>
-
         <Button type="submit">Change Password</Button>
       </Form>
     </div>

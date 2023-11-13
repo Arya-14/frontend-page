@@ -5,3 +5,6 @@
 .addbtn{
     margin-left: 200px;
 }
+.addcustom{
+    display: flex;
+}

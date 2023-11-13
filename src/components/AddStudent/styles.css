@@ -1,8 +1,10 @@
 .add-student-form {
-    margin-left: 270px;
-    background-color: #ffffff;
-    border: 1px solid #cccccc;
-    padding: 20px;
+    margin-left: 280px;
+    margin-right: 10px;
+    padding: 25px;
+    border-radius: 22px;
+background: #FFF;
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .add-student-form h1 {
@@ -53,4 +55,24 @@
 .flex-row2{
     width:300px;
     text-align: center;
+}
+.textbox{
+    border-radius: 8px;
+border: 1px solid var(--light-version-surface-border, #DDE2E8);
+background: #F8F8FF;
+}
+.submitbtn{
+    color: #FFF;
+text-align: center;
+font-family: DM Sans;
+font-size: 20px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+.backnav1{
+    display: flex;
+}
+.left{
+    text-align: right;
 }

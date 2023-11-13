@@ -1,36 +1,41 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./styles.css";
+import backIcon from '../../Assets/Images/backicon.png';
 import { Form, InputGroup, FormControl, Button } from "react-bootstrap";
 
 const EditCustomField = (props) => {
     const [customField, setCustomField] = useState([]);
+    const location = useLocation()
+  const { from } = location.state;
+  console.log("from", from)
 
-    // useEffect(() => {
-    //     axios.get(`/customFields/${match.params.id}`)
-    //         .then(response => {
-    //             setCustomField(response.data);
-    //         });
-    // }, [match.params.id]);
+    useEffect(() => {
+        setCustomField(from);
+    }, [from]);
 
     const handleUpdateCustomField = async (e) => {
         e.preventDefault();
 
-        // const updatedCustomField = {
-        //     label: e.target.label.value,
-        //     type: e.target.type.value,
-        // };
+        const updatedCustomField = {
+            Label: e.target.label.value,
+            Type: e.target.type.value,
+        };
 
-        // await axios.put(`/customFields/${match.params.id}`, updatedCustomField);
+        await axios.put(`http://localhost:8081/customFields/${customField._id}`, updatedCustomField);
 
-        // Redirect to the custom fields page
+        // Redirect to the custom main fields page
+        window.location.href='/main/settings';
+        
     };
 
     return (
         <div className="customfield">
-            <Link to={"/main/settings"}> Back </Link>
-            <h1 className="my-3">Edit Student Custom Fields</h1>
+        <div className="displayflex">
+          <a href="/main/settings"> <img className="backimg" src={backIcon} /></a>
+            <h2 className="my-3">Edit Student Custom Fields</h2>
+        </div>
 
             <Form onSubmit={handleUpdateCustomField}>
                 <InputGroup className="mb-3">
@@ -38,7 +43,7 @@ const EditCustomField = (props) => {
                     <FormControl
                         type="text"
                         name="label"
-                        defaultValue={customField.label}
+                        defaultValue={customField.Label}
                     />
                 </InputGroup>
 
@@ -47,13 +52,14 @@ const EditCustomField = (props) => {
                     <FormControl
                         type="text"
                         name="type"
-                        defaultValue={customField.type}
+                        defaultValue={customField.Type}
                     />
                 </InputGroup>
-
+                <div className="right">
                 <Button type="submit" className="btn btn-primary">
                     Update
                 </Button>
+                </div>
             </Form>
         </div>
     );

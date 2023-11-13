@@ -1,6 +1,10 @@
 .studentpage{
     margin-left: 270px;
     width: 100%-270px;
+    border-radius: 22px;
+background: #FFF;
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+padding: 15px;
 }
 table {
     width: 100%;
@@ -83,12 +87,14 @@ table {
     vertical-align: middle;
     font-size: 16px;
   }
-  .flex-content{
-    justify-content: space-around;
-  }
-  .btn-primary{
-    margin-left: 300px;
-  }
   .btn-secondary{
     margin-left: 300px;
+  }
+  .editimg{
+    height: 30px;
+    width: 30px;
+  }
+  .searchimg{
+    height:35px;
+    width:35px;
   }
