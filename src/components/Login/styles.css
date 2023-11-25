@@ -26,6 +26,12 @@
 
 }
 
+@media (max-width: 600px) {
+    .logo {
+        display: none;
+    }
+}
+
 .logo {
     position: absolute;
     top: 40px;
@@ -126,13 +132,38 @@
 
 }
 
-.im{
+@media (max-width: 600px) {
+    .welcome {
+        font-size: 24px;
+        line-height: 28px;
+    }
 
-        width: 716px;
-        height: 537px;
-        top: 319px;
-        
-    }   
+    .input1 {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .blue_btn {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .createAcc {
+        font-size: 16px;
+    }
+
+    .white_btn {
+        font-size: 16px;
+    }
+}
+
+.im {
+    width: 45%;
+    height: auto;
+    top: 20%;
+    left: 12.5%;
+}
+
 .input1 {
     background: none;
     border: none;

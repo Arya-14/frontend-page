@@ -9,7 +9,6 @@ const EditCustomField = (props) => {
     const [customField, setCustomField] = useState([]);
     const location = useLocation()
   const { from } = location.state;
-  console.log("from", from)
 
     useEffect(() => {
         setCustomField(from);

@@ -14,38 +14,44 @@ const Login = () => {
         password: ''
     })
     const [error, setError] = useState();
-
-    useEffect(() => {
-        axios.post('http://localhost:8081/users/checklogin')
-            .then((response) => {
-                if (response.status === 401 || response.status === 408) {
-                    localStorage.removeItem("TOKEN");
-                } else if (response.status === 200) {
-                    window.location.href = "/main/students";
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-                if (err && err.response && (err.response.status === 401 || err.response.status === 408)) {
-                    localStorage.removeItem("TOKEN");
-                }
-            })
-    }, [])
+    useEffect(async () => {
+        try {
+          const response = await axios.post('http://localhost:8081/users/checklogin');
+      
+          if (response.status === 401 || response.status === 408) {
+            localStorage.removeItem('TOKEN');
+          } else if (response.status === 200) {
+            window.location.href = '/main/students';
+          }
+        } catch (error) {
+          console.error(error);
+      
+          if (error && error.response && (error.response.status === 401 || error.response.status === 408)) {
+            localStorage.removeItem('TOKEN');
+          }
+        }
+    }, []);
 
     const handleChange = e => {
         const { name, value } = e.target;
         setData({ ...data, [name]: value });
     }
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8081/users/login', data)
-            .then((response) => {
-                localStorage.setItem("TOKEN", response.data.token);
-                localStorage.setItem("NAME", response.data.name);
-                window.location.href = "/main/students";
-            })
-            .catch(err => console.log(err));
-    }
+      
+        try {
+          const response = await axios.post('http://localhost:8081/users/login', data);
+          const token = response.data.token;
+          const name = response.data.name;
+      
+          localStorage.setItem('TOKEN', token);
+          localStorage.setItem('NAME', name);
+          window.location.href = '/main/students';
+        } catch (error) {
+          console.error(error);
+        }
+    };
     return (
         <div className="signUp_container">
             <div className="logo">eSchool</div>

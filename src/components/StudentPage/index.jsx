@@ -69,7 +69,7 @@ const header = renderHeader();
 
   return (
     <div className="studentpage">
-        <DataTable value={students} paginator rows={5} dataKey="Id" filters={filters} filterDisplay="row" loading={loading}
+        <DataTable value={students} paginator rows={6} dataKey="Id" filters={filters} filterDisplay="row" loading={loading}
         globalFilterFields={['Firstname']} header={header} emptyMessage="No students found.">
     <Column field="Id" header="ID" />    
     <Column field="Firstname" header="First Name" />

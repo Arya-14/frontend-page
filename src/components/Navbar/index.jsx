@@ -2,6 +2,7 @@ import React from "react";
 import { Dropdown, Nav } from "react-bootstrap";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
+import Userimg from "../../Assets/Images/usericon.png";
 import "./styles.css";
 function Navbar() {
     const name = localStorage.getItem("NAME");
@@ -15,7 +16,8 @@ function Navbar() {
             <div className="nav-dropdown">
 
                 <Dropdown>
-                    <Dropdown.Toggle variant="secondary" id="dropdownMenuButton">
+                    <Dropdown.Toggle variant="secondary" className="dropdownButton">
+                        <img className="userimg" src={Userimg}></img>
                         <a className="admin-name" href="/main/students">{name}</a>
                         <i className="bi bi-three-dots-vertical"></i>
                     </Dropdown.Toggle>
